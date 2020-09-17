@@ -11,7 +11,6 @@
             </router-link>
             <%_ } _%>
         </h2>
-        <%_ if (searchEngine === 'elasticsearch') { _%>
         <div class="row">
             <div class="col-sm-12">
                 <form name="searchForm" class="form-inline" v-on:submit.prevent="search(currentSearch)">
@@ -30,7 +29,6 @@
                 </form>
             </div>
         </div>
-        <%_ } _%>
         <br/>
         <div class="alert alert-warning" v-if="!isFetching && <%= entityInstancePlural %> && <%= entityInstancePlural %>.length === 0">
             <span v-text="$t('<%= i18nKeyPrefix %>.home.notFound')">No <%=entityInstancePlural %> found</span>

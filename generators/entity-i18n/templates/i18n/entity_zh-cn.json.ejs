@@ -22,22 +22,22 @@ let helpBlocks = 0; %>
         "<%= entityTranslationKey %>" : {
             "home": {
                 "title": "<%= entityClassPluralHumanized  %>",
-                "createLabel": "创建新 <%= entityClassHumanized %>",
-                "createOrEditLabel": "创建或编辑 <%= entityClassHumanized %>"<% if (searchEngine !== false) { %>,
-                "search": "查找 <%= entityClassHumanized %>"<% } %>,
+                "createLabel": "创建新 <%= entityTableNameCn %>",
+                "createOrEditLabel": "创建或编辑 <%= entityTableNameCn %>"<% if (searchEngine !== false) { %>,
+                "search": "查找 <%= entityTableNameCn %>"<% } %>,
                 "notFound": "No <%= entityClassPluralHumanized %> found"
             },<% if (!microserviceAppName) { %>
-            "created": "<%= entityClassHumanized %> {{ param }} 创建成功",
-            "updated": "<%= entityClassHumanized %> {{ param }} 更新成功",
-            "deleted": "<%= entityClassHumanized %> {{ param }} 删除成功",<% } %>
+            "created": "<%= entityTableNameCn %> {{ param }} 创建成功",
+            "updated": "<%= entityTableNameCn %> {{ param }} 更新成功",
+            "deleted": "<%= entityTableNameCn %> {{ param }} 删除成功",<% } %>
             "delete": {
-                "question": "你确定要删除 <%= entityClassHumanized %> {{ id }} 吗？"
+                "question": "你确定要删除 <%= entityTableNameCn %> {{ id }} 吗？"
             },
             "detail": {
-                "title": "<%= entityClassHumanized %>"
+                "title": "<%= entityTableNameCn %>"
             }<% for (idx in fields) {
             if (typeof fields[idx].javadoc !== 'undefined') ++helpBlocks; %>,
-            "<%= fields[idx].fieldName %>": "<%= fields[idx].fieldNameHumanized %>"<% } %><% for (idx in relationships) { %>,
+            "<%= fields[idx].fieldName %>": "<%= fields[idx].javadoc %>"<% } %><% for (idx in relationships) { %>,
             "<%= relationships[idx].relationshipName %>": "<%= relationships[idx].relationshipNameHumanized %>"<% } if (helpBlocks > 0) { %>,
             "help": {<% for (idx in fields) {
                 if (fields[idx].javadoc) {
@@ -50,9 +50,9 @@ let helpBlocks = 0; %>
     }<% if (microserviceAppName) { %>,
     "<%= microserviceAppName %>": {
         "<%= entityTranslationKey %>" : {
-            "created": "<%= entityClassHumanized %> {{ param }} 创建成功",
-            "updated": "<%= entityClassHumanized %> {{ param }} 更新成功",
-            "deleted": "<%= entityClassHumanized %> {{ param }} 删除成功"
+            "created": "<%= entityTableNameCn %> {{ param }} 创建成功",
+            "updated": "<%= entityTableNameCn %> {{ param }} 更新成功",
+            "deleted": "<%= entityTableNameCn %> {{ param }} 删除成功"
         }
     }<% } %>
 }
