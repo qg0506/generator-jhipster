@@ -178,7 +178,7 @@ function askForServerSideOpts() {
                 } else {
                     opts.push({
                         value: 'sql',
-                        name: 'SQL (H2, MySQL, PostgreSQL, MSSQL)',
+                        name: 'SQL (H2, MySQL, MariaDB, PostgreSQL, MSSQL)',
                     });
                 }
                 opts.push({
@@ -309,7 +309,7 @@ function askForServerSideOpts() {
         this.packageName = this.jhipsterConfig.packageName = props.packageName;
         this.serverPort = this.jhipsterConfig.serverPort = props.serverPort || '8080';
         this.cacheProvider = this.jhipsterConfig.cacheProvider = !reactive ? props.cacheProvider : 'no';
-        this.enableHibernateCache = this.jhipsterConfig.enableHibernateCache = props.enableHibernateCache;
+        this.enableHibernateCache = this.jhipsterConfig.enableHibernateCache = !!props.enableHibernateCache;
         this.databaseType = this.jhipsterConfig.databaseType = props.databaseType;
         this.devDatabaseType = this.jhipsterConfig.devDatabaseType = props.devDatabaseType;
         this.prodDatabaseType = this.jhipsterConfig.prodDatabaseType = props.prodDatabaseType;

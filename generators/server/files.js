@@ -40,7 +40,7 @@ const shouldSkipUserManagement = generator =>
 const serverFiles = {
     jib: [
         {
-            path: 'src/main/jib/',
+            path: 'src/main/docker/jib/',
             templates: ['entrypoint.sh'],
         },
     ],
@@ -543,6 +543,19 @@ const serverFiles = {
             ],
         },
         {
+            condition: generator =>
+                !generator.reactive &&
+                generator.authenticationType === 'oauth2' &&
+                (generator.applicationType === 'microservice' || generator.applicationType === 'gateway'),
+            path: SERVER_TEST_SRC_DIR,
+            templates: [
+                {
+                    file: 'package/security/oauth2/AuthorizationHeaderUtilTest.java',
+                    renameTo: generator => `${generator.javaDir}security/oauth2/AuthorizationHeaderUtilTest.java`,
+                },
+            ],
+        },
+        {
             condition: generator => !shouldSkipUserManagement(generator) && generator.authenticationType !== 'oauth2',
             path: SERVER_MAIN_SRC_DIR,
             templates: [
@@ -1023,6 +1036,30 @@ const serverFiles = {
                 {
                     file: 'package/config/LiquibaseConfiguration.java',
                     renameTo: generator => `${generator.javaDir}config/LiquibaseConfiguration.java`,
+                },
+            ],
+        },
+        {
+            condition: generator => generator.databaseType === 'sql' && generator.reactive,
+            path: SERVER_MAIN_SRC_DIR,
+            templates: [
+                {
+                    file: 'package/service/ColumnConverter.java',
+                    renameTo: generator => `${generator.javaDir}service/ColumnConverter.java`,
+                },
+                {
+                    file: 'package/service/EntityManager.java',
+                    renameTo: generator => `${generator.javaDir}service/EntityManager.java`,
+                },
+            ],
+        },
+        {
+            condition: generator => generator.databaseType === 'sql' && generator.reactive && !generator.skipUserManagement,
+            path: SERVER_MAIN_SRC_DIR,
+            templates: [
+                {
+                    file: 'package/repository/rowmapper/UserRowMapper.java',
+                    renameTo: generator => `${generator.javaDir}repository/rowmapper/UserRowMapper.java`,
                 },
             ],
         },
