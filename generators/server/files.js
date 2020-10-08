@@ -16,7 +16,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-const mkdirp = require('mkdirp');
 const cleanup = require('../cleanup');
 const constants = require('../generator-constants');
 
@@ -912,6 +911,15 @@ const serverFiles = {
                 },
             ],
         },
+        {
+            path: SERVER_MAIN_SRC_DIR,
+            templates: [
+                {
+                    file: 'package/GeneratedByJHipster.java',
+                    renameTo: generator => `${generator.javaDir}GeneratedByJHipster.java`,
+                },
+            ],
+        },
     ],
     serverJavaConfig: [
         {
@@ -1528,15 +1536,7 @@ const serverFiles = {
             ],
         },
         {
-            condition: generator => {
-                if (generator.gatlingTests) {
-                    mkdirp(`${TEST_DIR}gatling/user-files/data`);
-                    mkdirp(`${TEST_DIR}gatling/user-files/bodies`);
-                    mkdirp(`${TEST_DIR}gatling/user-files/simulations`);
-                    return true;
-                }
-                return false;
-            },
+            condition: generator => generator.gatlingTests,
             path: TEST_DIR,
             templates: [
                 // Create Gatling test files
@@ -1907,9 +1907,6 @@ function writeFiles() {
             this.javaDir = `${this.packageFolder}/`;
             this.testDir = `${this.packageFolder}/`;
 
-            // Create Java resource files
-            mkdirp(SERVER_MAIN_RES_DIR);
-            mkdirp(`${SERVER_TEST_SRC_DIR}/${this.testDir}`);
             this.generateKeyStore();
         },
 

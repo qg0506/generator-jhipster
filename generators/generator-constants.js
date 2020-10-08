@@ -27,7 +27,7 @@ const NODE_VERSION = '12.18.3';
 const NPM_VERSION = '6.14.8';
 
 const GRADLE_VERSION = '6.6';
-const JIB_VERSION = '2.5.0';
+const JIB_VERSION = '2.6.0';
 
 // Libraries version
 const JHIPSTER_DEPENDENCIES_VERSION = '3.10.0-SNAPSHOT';
@@ -72,7 +72,7 @@ const DOCKER_ZOOKEEPER = `confluentinc/cp-zookeeper:${KAFKA_VERSION}`;
 const DOCKER_SONAR = 'sonarqube:8.4.2-community';
 const DOCKER_TRAEFIK = 'traefik:1.7.26'; // waiting for https://github.com/jhipster/generator-jhipster/issues/11198
 const DOCKER_CONSUL = 'consul:1.8.4';
-const DOCKER_CONSUL_CONFIG_LOADER = 'jhipster/consul-config-loader:v0.3.1';
+const DOCKER_CONSUL_CONFIG_LOADER = 'jhipster/consul-config-loader:v0.4.1';
 const DOCKER_PROMETHEUS = 'prom/prometheus:v2.20.1';
 const DOCKER_PROMETHEUS_ALERTMANAGER = 'prom/alertmanager:v0.21.0';
 const DOCKER_GRAFANA = 'grafana/grafana:7.1.5';
@@ -135,16 +135,16 @@ const OFFICIAL_DATABASE_TYPE_NAMES = {
 
 const R2DBC_DB_OPTIONS = [
     {
+        value: 'postgresql',
+        name: 'PostgreSQL',
+    },
+    {
         value: 'mysql',
         name: 'MySQL',
     },
     {
         value: 'mariadb',
         name: 'MariaDB',
-    },
-    {
-        value: 'postgresql',
-        name: 'PostgreSQL',
     },
     {
         value: 'mssql',
@@ -154,16 +154,16 @@ const R2DBC_DB_OPTIONS = [
 
 const SQL_DB_OPTIONS = [
     {
+        value: 'postgresql',
+        name: 'PostgreSQL',
+    },
+    {
         value: 'mysql',
         name: 'MySQL',
     },
     {
         value: 'mariadb',
         name: 'MariaDB',
-    },
-    {
-        value: 'postgresql',
-        name: 'PostgreSQL',
     },
     {
         value: 'oracle',
